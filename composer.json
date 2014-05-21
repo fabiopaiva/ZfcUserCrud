@@ -1,5 +1,5 @@
 {
-    "name": "fabiopaiva/ZfcUserCrud",
+    "name": "fabiopaiva/zfc-user-crud",
     "description": "Crud interface for ZfcUser with Doctrine ORM.",
     "type": "library",
     "license": "BSD-3-Clause",
