@@ -12,7 +12,7 @@
             "name": "Fábio Paiva",
             "email": "paiva.fabiofelipe@gmail.com",
             "homepage": "http://sigweb.net.br"
-        },
+        }
     ],
     "require": {
         "php": ">=5.3.3",
