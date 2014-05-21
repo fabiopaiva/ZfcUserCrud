@@ -1,0 +1,56 @@
+<?php if ($this->pageCount): ?>
+    <ul class="pagination pagination-sm">
+        <li class="disabled">
+            <a>
+                <?php echo $this->translate('Showing');?>
+                <?php echo $this->firstItemNumber; ?> a <?php echo $this->lastItemNumber; ?>
+                <?php echo $this->translate('from');?>
+                <?php echo $this->totalItemCount; ?> 
+                <?php echo $this->translate('items');?>
+            </a>
+        </li>
+        <!-- Previous page link -->
+        <?php if (isset($this->previous)): ?>
+            <li>
+                <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->previous; ?>">
+                    <<
+                </a>
+            </li>
+        <?php else: ?>
+            <li class="disabled">
+                <a href="#">
+                    <<
+                </a>
+            </li>
+        <?php endif; ?>
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <li>
+                    <a href="<?php echo $this->url($this->route, array(), false, true); ?>?page=<?php echo $page; ?>">
+                        <?php echo $page; ?>
+                    </a>
+                </li>
+            <?php else: ?>
+                <li class="active">
+                    <a href="#"><?php echo $page; ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+            <li>
+                <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->next; ?>">
+                    >>
+                </a>
+            </li>
+        <?php else: ?>
+            <li class="disabled">
+                <a href="#">
+                    >>
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+<?php endif; ?>

@@ -1,0 +1,85 @@
+<div class="page-header">
+    <h3>
+        <?php echo $this->translate('Roles');?>
+    </h3>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a class="btn btn-info" href="<?php echo $this->url('zfc-user-crud-role', array('action' => 'new')); ?>">
+            <span class="glyphicon glyphicon-plus"></span>
+        <?php echo $this->translate('New Role');?> 
+        </a>
+    </div>
+    <div class="col-md-9">
+        <form class="form-inline" role="form" method="post">
+            <div class="form-group">
+                <label class="sr-only" for="searchTerm">
+                    <?php echo $this->translate('Search');?>: 
+                </label>
+                <input type="text" class="form-control" id="searchTerm" 
+                       value="<?php echo $searchTerm; ?>"
+                       placeholder="<?php echo $this->translate('Role');?>" 
+                       name="searchTerm"/>
+            </div>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+                <?php echo $this->translate('Search');?>
+            </button>
+        </form>
+    </div>
+</div>
+<br/>
+
+<table class="table table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            <?php echo $this->translate('Role');?>
+        </th>
+        <th>
+            <?php echo $this->translate('Edit');?>
+        </th>
+        <th>
+            <?php echo $this->translate('Remove');?>
+        </th>
+    </tr>
+    <?php foreach ($roles as $role): ?>
+    <tr>
+        <td>
+            <?php echo $role->getRoleId();?>
+        </td>
+        <td>
+                <a href="
+                <?php
+                echo $this->url('zfc-user-crud-role', array(
+                    'action' => 'edit',
+                    'id' => $role->getId()
+                ));
+                ?>"
+                   >
+                    <span class="glyphicon glyphicon-edit"></span>
+                    <?php echo $this->translate('Edit');?>
+                </a>
+            </td>
+            <td>
+                <a href="
+                <?php
+                echo $this->url('zfc-user-crud-role', array(
+                    'action' => 'remove',
+                    'id' => $role->getId()
+                ));
+                ?>"
+                   onclick="return confirm('<?php echo $this->translate('Confirm to remove this item');?>')"
+                   >
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <?php echo $this->translate('Remove');?>
+                </a>
+            </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<?php
+echo $this
+        ->paginationControl(
+                $roles, 'Sliding', 'partial/paginator', array('route' => 'zfc-user-crud-role'));
+?>
