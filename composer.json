@@ -19,11 +19,6 @@
         "zf-commons/zfc-user": "1.*",
 	"zf-commons/zfc-user-doctrine-orm": "0.1.3"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.1.x-dev"
-        }
-    },
     "autoload": {
         "psr-0": {
             "ZfcUserCrud": "src/"
