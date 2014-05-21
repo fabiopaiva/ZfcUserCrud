@@ -1,9 +1,13 @@
-## ZfcUserCrud 
+# ZfcUserCrud 
 
 ZfcUserCrud provide a CRUD interface to manage Users and Rolers.
 Require [ZfcUserDoctrineOrm](https://github.com/ZF-Commons/ZfcUserDoctrineORM).
 
-# Usage
+## Instalation
+
+	php composer.phar require fabiopaiva/zfc-user-crud:dev-master
+
+## Usage
 
 In application.config.php enable this modules:
 
@@ -11,14 +15,14 @@ In application.config.php enable this modules:
 		return array(
     			'modules' => array(
 				'DoctrineModule',
-			        'DoctrineORMModule',
+				'DoctrineORMModule',
 				'ZfcBase',
 				'ZfcUser',
 				'ZfcUserDoctrineORM',
-			        'ZfcUserCrud',
+				'ZfcUserCrud',
 				// .. Another modules you use
 				'Application'
-				),
+				 ),
 				...
 
 Don't forget to configure your Doctrine ORM
