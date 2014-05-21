@@ -1,1 +1,6 @@
-Sample, skeleton module for use with the ZF2 MVC layer.
+## ZfcUserCrud 
+
+ZfcUserCrud provide a CRUD interface to manage Users and Rolers.
+Require [ZfcUserDoctrineOrm](https://github.com/ZF-Commons/ZfcUserDoctrineORM).
+
+
