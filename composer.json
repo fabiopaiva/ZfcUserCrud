@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-	"zf-commons/zfc-user-doctrine-orm": "0.1.3"
+	"zf-commons/zfc-user-doctrine-orm": "dev-master"
     },
     "autoload": {
         "psr-0": {
