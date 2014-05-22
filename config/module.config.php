@@ -53,7 +53,7 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'ZendSkeletonModule' => __DIR__ . '/../view',
+            'ZfcUserCrud' => __DIR__ . '/../view',
         ),
     ),
 );
