@@ -60,6 +60,7 @@ class CrudController extends AbstractActionController {
     }
 
     public function newAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $form = $this->getForm();
         $filter = $form->getInputFilter();
         $filter
@@ -80,7 +81,7 @@ class CrudController extends AbstractActionController {
                 $user->setPassword($this->encriptPassword($user->getPassword()));
                 $this->getOM()->persist($user);
                 $this->getOM()->flush();
-                $this->flashMessenger()->addSuccessMessage('User saved');
+                $this->flashMessenger()->addSuccessMessage($translator->translate('User saved'));
                 $this->redirect()->toRoute('zfc-user-crud');
             }
         }
@@ -91,6 +92,7 @@ class CrudController extends AbstractActionController {
     }
 
     public function editAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $form = $this->getForm();
         $user = $this
@@ -111,7 +113,7 @@ class CrudController extends AbstractActionController {
                 }
                 $this->getOM()->persist($user);
                 $this->getOM()->flush();
-                $this->flashMessenger()->addSuccessMessage('User updated');
+                $this->flashMessenger()->addSuccessMessage($translator->translate('User updated'));
                 $this->redirect()->toRoute('zfc-user-crud');
             }
         }
@@ -122,6 +124,7 @@ class CrudController extends AbstractActionController {
     }
     
     public function removeAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $id = $this->params()->fromRoute('id');
         $entity = $this
@@ -130,7 +133,7 @@ class CrudController extends AbstractActionController {
                 ->find($id);
         $this->getOM()->remove($entity);
         $this->getOM()->flush();
-        $this->flashMessenger()->addSuccessMessage('User removed');
+        $this->flashMessenger()->addSuccessMessage($translator->translate('User removed'));
         $this->redirect()->toRoute('zfc-user-crud');
     }
 

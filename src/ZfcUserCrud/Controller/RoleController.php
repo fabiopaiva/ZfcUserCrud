@@ -51,6 +51,7 @@ class RoleController extends AbstractActionController {
     }
 
     public function newAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $form = $this->getForm();
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
@@ -58,7 +59,7 @@ class RoleController extends AbstractActionController {
                 $role = $form->getData();
                 $this->getOM()->persist($role);
                 $this->getOM()->flush();
-                $this->flashMessenger()->addSuccessMessage('Role saved');
+                $this->flashMessenger()->addSuccessMessage($translator->translate('Role saved'));
                 $this->redirect()->toRoute('zfc-user-crud-role');
             }
         }
@@ -69,6 +70,7 @@ class RoleController extends AbstractActionController {
     }
 
     public function editAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $form = $this->getForm();
         $role = $this
@@ -82,7 +84,7 @@ class RoleController extends AbstractActionController {
                 $role = $form->getData();
                 $this->getOM()->persist($role);
                 $this->getOM()->flush();
-                $this->flashMessenger()->addSuccessMessage('Role updated');
+                $this->flashMessenger()->addSuccessMessage($translator->translate('Role updated'));
                 $this->redirect()->toRoute('zfc-user-crud-role');
             }
         }
@@ -93,6 +95,7 @@ class RoleController extends AbstractActionController {
     }
 
     public function removeAction() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $id = $this->params()->fromRoute('id');
         $entity = $this
@@ -101,7 +104,7 @@ class RoleController extends AbstractActionController {
                 ->find($id);
         $this->getOM()->remove($entity);
         $this->getOM()->flush();
-        $this->flashMessenger()->addSuccessMessage('Role removed');
+        $this->flashMessenger()->addSuccessMessage($translator->translate('Role removed'));
         $this->redirect()->toRoute('zfc-user-crud-role');
     }
 
