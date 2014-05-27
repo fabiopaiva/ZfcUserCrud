@@ -109,6 +109,7 @@ class RoleController extends AbstractActionController {
     }
 
     private function getForm() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $role = new $config['roleEntity'];
         $form = new Form('role');
@@ -119,7 +120,7 @@ class RoleController extends AbstractActionController {
                 ->add(array(
                     'name' => 'roleId',
                     'options' => array(
-                        'label' => 'Role'
+                        'label' => $translator->translate('Role')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -129,7 +130,7 @@ class RoleController extends AbstractActionController {
                     'name' => 'parent',
                     'type' => 'DoctrineModule\Form\Element\ObjectSelect',
                     'options' => array(
-                        'label' => 'Parent Role',
+                        'label' => $translator->translate('Parent Role'),
                         'object_manager' => $this->getOM(),
                         'target_class' => $config['roleEntity'],
                         'property' => 'roleId',

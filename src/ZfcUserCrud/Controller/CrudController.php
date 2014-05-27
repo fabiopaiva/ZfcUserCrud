@@ -145,6 +145,7 @@ class CrudController extends AbstractActionController {
     }
 
     private function getForm() {
+        $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $user = new $config['userEntity'];
         $form = new Form('user');
@@ -155,7 +156,7 @@ class CrudController extends AbstractActionController {
                 ->add(array(
                     'name' => 'displayName',
                     'options' => array(
-                        'label' => 'Name'
+                        'label' => $translator->translate('Name')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -164,7 +165,7 @@ class CrudController extends AbstractActionController {
                 ->add(array(
                     'name' => 'username',
                     'options' => array(
-                        'label' => 'Username'
+                        'label' => $translator->translate('Username')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -174,7 +175,7 @@ class CrudController extends AbstractActionController {
                     'name' => 'email',
                     'type' => 'email',
                     'options' => array(
-                        'label' => 'Email'
+                        'label' => $translator->translate('Email')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -184,7 +185,7 @@ class CrudController extends AbstractActionController {
                     'name' => 'password',
                     'type' => 'password',
                     'options' => array(
-                        'label' => 'Password:'
+                        'label' => $translator->translate('Password')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -194,7 +195,7 @@ class CrudController extends AbstractActionController {
                     'name' => 'password_confirm',
                     'type' => 'password',
                     'options' => array(
-                        'label' => 'Password Confirm'
+                        'label' => $translator->translate('Password Confirm')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm',
@@ -204,14 +205,14 @@ class CrudController extends AbstractActionController {
                     'name' => 'state',
                     'type' => 'checkbox',
                     'options' => array(
-                        'label' => 'Enabled'
+                        'label' => $translator->translate('Enabled')
                     )
                 ))
                 ->add(array(
                     'name' => 'roles',
                     'type' => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
                     'options' => array(
-                        'label' => 'Roles',
+                        'label' => $translator->translate('Roles'),
                         'object_manager' => $this->getOM(),
                         'target_class' => $config['roleEntity'],
                         'property' => 'roleId'
