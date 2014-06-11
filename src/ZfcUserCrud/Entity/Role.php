@@ -1,25 +1,11 @@
 <?php
-/**
- * BjyAuthorize Module (https://github.com/bjyoungblood/BjyAuthorize)
- *
- * @link https://github.com/bjyoungblood/BjyAuthorize for the canonical source repository
- * @license http://framework.zend.com/license/new-bsd New BSD License
- */
 
 namespace ZfcUserCrud\Entity;
 
-use BjyAuthorize\Acl\HierarchicalRoleInterface;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * An example entity that represents a role.
- *
- * @ORM\Entity
- * @ORM\Table(name="role")
- *
- * @author Tom Oram <tom@scl.co.uk>
- */
-class Role implements HierarchicalRoleInterface
+
+class Role
 {
     /**
      * @var int
