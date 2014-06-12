@@ -4,7 +4,12 @@ namespace ZfcUserCrud\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
+/**
+ - *
+ - * @ORM\Entity
+ - * @ORM\Table(name="role")
+ - * @author Tom Oram <tom@scl.co.uk>
+ - */
 class Role
 {
     /**
