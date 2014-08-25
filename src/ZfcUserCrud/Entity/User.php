@@ -8,7 +8,6 @@
  
 namespace ZfcUserCrud\Entity;
 
-use BjyAuthorize\Provider\Role\ProviderInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,7 +21,7 @@ use ZfcUser\Entity\UserInterface;
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class User implements UserInterface, ProviderInterface
+class User implements UserInterface
 {
     /**
      * @var int
