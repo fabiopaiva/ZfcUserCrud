@@ -3,6 +3,7 @@
 namespace ZfcUserCrud\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Permissions\Acl\Role\RoleInterface;
 
 /**
  - *
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  - * @ORM\Table(name="role")
  - * @author Tom Oram <tom@scl.co.uk>
  - */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var int
