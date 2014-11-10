@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ZfcUser\Entity\UserInterface;
+use BjyAuthorize\Provider\Role\ProviderInterface as RoleProviderInterface;
 
 /**
  * An example of how to implement a role aware user entity.
@@ -21,7 +22,7 @@ use ZfcUser\Entity\UserInterface;
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class User implements UserInterface
+class User implements UserInterface, RoleProviderInterface
 {
     /**
      * @var int
