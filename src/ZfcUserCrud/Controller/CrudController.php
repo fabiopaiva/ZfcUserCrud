@@ -264,6 +264,112 @@ class CrudController extends AbstractActionController {
 
         return $form;
     }
+    
+    private function getPasswordForm() {
+        $translator = $this->getServiceLocator()->get('translator');
+        $form = new Form('password');
+        $form
+                ->setAttribute('class', 'form-horizontal')
+                ->add(array(
+                    'name' => 'oldPassword',
+                    'type' => 'password',
+                    'options' => array(
+                        'label' => $translator->translate('Old password')
+                    ),
+                    'attributes' => array(
+                        'class' => 'form-control input-sm',
+                    )
+                ))
+                ->add(array(
+                    'name' => 'password',
+                    'type' => 'password',
+                    'options' => array(
+                        'label' => $translator->translate('New password')
+                    ),
+                    'attributes' => array(
+                        'class' => 'form-control input-sm',
+                    )
+                ))
+                ->add(array(
+                    'name' => 'password_confirm',
+                    'type' => 'password',
+                    'options' => array(
+                        'label' => $translator->translate('Confirm password')
+                    ),
+                    'attributes' => array(
+                        'class' => 'form-control input-sm',
+                    )
+                ))
+                ->add(array(
+                    'name' => 'save',
+                    'type' => 'submit',
+                    'attributes' => array(
+                        'value' => 'Save',
+                        'class' => 'btn btn-sm btn-success'
+                    )
+        ));
+
+        $filter = new InputFilter();
+        $filter
+                ->add(array(
+                    'name' => 'password',
+                    'required' => true
+                ))
+                ->add(array(
+                    'name' => 'oldPassword',
+                    'required' => true
+                ))
+                ->add(array(
+                    'name' => 'password_confirm',
+                    'required' => false,
+                    'validators' => array(
+                        array(
+                            'name' => 'Identical',
+                            'options' => array(
+                                'token' => 'password',
+                            )
+                        )
+                    )
+                        )
+                )
+        ;
+        $form->setInputFilter($filter);
+
+        return $form;
+    }
+    
+    public function passwordAction(){
+        $translator = $this->getServiceLocator()->get('translator');
+        if (!$this->zfcUserAuthentication()->hasIdentity()) {
+            $this->flashMessenger()->addWarningMessage($translator->translate('User not logged in'));
+            $this->redirect()->toRoute('home');
+            return true;
+        }
+        $form = $this->getPasswordForm();
+        if ($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $user = $this->zfcUserAuthentication()->getIdentity();
+                $bcrypt = new Bcrypt;
+                $bcrypt->setCost($this->getOptions()->getPasswordCost());
+                if (!$bcrypt->verify($data['oldPassword'], $user->getPassword())) {
+                    $this->flashMessenger()->addErrorMessage($translator->translate('Old password don\'t match'));
+                    $this->redirect()->toRoute('zfc-user-crud-password');
+                    return false;
+                }
+                $user->setPassword($this->encriptPassword($data['password']));
+                $this->getOM()->persist($user);
+                $this->getOM()->flush();
+                $this->flashMessenger()->addSuccessMessage($translator->translate('Password changed'));
+                $this->redirect()->toRoute('zfc-user-crud-password');
+            }
+        }
+        $form->prepare();
+        return array(
+            'form' => $form
+        );
+    }
 
     /**
      * get service options

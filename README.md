@@ -53,6 +53,7 @@ In your view use this routes:
 
 	<?php echo $this->url('zfc-user-crud');?> For user interface
 	<?php echo $this->url('zfc-user-crud-role');?> For role interface
+        <?php echo $this->url('zfc-user-crud-password');?> For change user password
 
 Override configuration if you wanna use your own entities
 

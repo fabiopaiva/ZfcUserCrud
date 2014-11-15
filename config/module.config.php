@@ -37,6 +37,18 @@ return array(
                 ),
                 'may_terminate' => true,
             ),
+            'zfc-user-crud-password' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/password',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'ZfcUserCrud\Controller',
+                        'controller' => 'Crud',
+                        'action' => 'password',
+                    ),
+                ),
+                'may_terminate' => true,
+            ),
             'zfc-user-crud-role' => array(
                 'type' => 'Segment',
                 'options' => array(
