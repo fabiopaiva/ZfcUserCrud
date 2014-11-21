@@ -144,7 +144,7 @@ class CrudController extends AbstractActionController {
         return $pass;
     }
 
-    private function getForm() {
+    protected function getForm() {
         $translator = $this->getServiceLocator()->get('translator');
         $config = $this->getServiceLocator()->get('zfcusercrud_options');
         $user = new $config['userEntity'];
@@ -265,7 +265,7 @@ class CrudController extends AbstractActionController {
         return $form;
     }
     
-    private function getPasswordForm() {
+    protected function getPasswordForm() {
         $translator = $this->getServiceLocator()->get('translator');
         $form = new Form('password');
         $form
