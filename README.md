@@ -63,3 +63,34 @@ Override configuration if you wanna use your own entities
 	        'roleEntity' => 'ZfcUserCrud\Entity\Role'
 	    )
 
+#ZfcAdmin
+
+To use with ZfcAdmin, just override the route like this:
+
+	<?php
+	return array(
+	    'router' => array(
+	        'routes' => array(
+	            'zfcadmin' => array(
+	                'child_routes' => array(
+	                    'zfc-user-crud' => array(
+	                        'type' => 'segment',
+	                        'options' => array(
+	                            'route' => '/users[/:action][/:id]',
+	                            'defaults' => array(
+	                                'controller' => 'ZfcUserCrud\Controller\Crud',
+	                                'action'     => 'index',
+	                            ),
+	                        ),
+	                    ),
+	                ),
+	            ),
+	            'zfc-user-crud' => array(
+	                'options' => array(
+	                    //if you change your ZfcAdmin url(admin), you must use your new url
+	                    'route' => '/admin/users[/:action][/:id]'
+	                )
+	            )
+	        ),
+	    )
+	);
