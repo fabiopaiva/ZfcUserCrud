@@ -46,7 +46,7 @@ eg: doctrine.local.php
 ## Create tables
 
     ./vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
-    #if it's ok
+    #if it's ok, execute
     ./vendor/bin/doctrine-module orm:schema-tool:update --force
 
 In your view use this routes:
